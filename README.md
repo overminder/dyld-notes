@@ -20,14 +20,18 @@ Therefore, we should almost always use absolute paths to specify the
 libraries. To ease that, `dyld` provides several special variables that will
 be expanded in the search path: `@executable_path, @rpath` and `@loader_path`.
 
-- @rpath for an executable or a shared library can be added using
-  install_name_tool
+- `@rpath` for an executable or a shared library can be added using
+  `install_name_tool`
 
   + Note that the loadee will inherit the loader's `@rpath`.
 
-- @executable_path is the basedir for the executable binary
-- @loader_path is the install location of the application plugins. It's
-  not always useful
+- `@executable_path` is the basedir for the executable binary
+
+  + The same as `$ORIGIN` on Linux.
+
+- `@loader_path` is the basedir for the loader (it could be either an
+  executable, which in this case is the same as the `@executable_path`,
+  or another shared library).
 
 ### `DYLD_LIBRARY_PATH` and `DYLD_FALLBACK_LIBRARY_PATH`.
 
